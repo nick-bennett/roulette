@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.roulette.ui.home;
+package edu.cnm.deepdive.roulette.controller.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,7 +21,7 @@ public class HomeFragment extends Fragment {
       ViewGroup container, Bundle savedInstanceState) {
     homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
     View root = inflater.inflate(R.layout.fragment_home, container, false);
-    final TextView rouletteValue = root.findViewById(R.id.roulette_value);
+    TextView rouletteValue = root.findViewById(R.id.roulette_value);
     homeViewModel.getRouletteValue().observe(getViewLifecycleOwner(), new Observer<String>() {
       @Override
       public void onChanged(@Nullable String s) {
