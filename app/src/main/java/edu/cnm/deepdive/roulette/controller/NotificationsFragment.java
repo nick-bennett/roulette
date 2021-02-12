@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.roulette.controller.notifications;
+package edu.cnm.deepdive.roulette.controller;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import edu.cnm.deepdive.roulette.R;
+import edu.cnm.deepdive.roulette.viewmodel.NotificationsViewModel;
 
 public class NotificationsFragment extends Fragment {
 
