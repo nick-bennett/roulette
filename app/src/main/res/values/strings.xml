@@ -3,6 +3,7 @@
   <string name="title_home">Home</string>
   <string name="title_dashboard">Dashboard</string>
   <string name="title_notifications">Notifications</string>
+  <string name="spin">Spin!</string>
 
   <string-array name="pocket_values">
     <item>00</item>

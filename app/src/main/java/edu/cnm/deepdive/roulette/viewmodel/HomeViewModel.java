@@ -10,6 +10,8 @@ import java.util.Random;
 
 public class HomeViewModel extends AndroidViewModel {
 
+  public static final int POCKETS_ON_WHEEL = 38;
+
   private final MutableLiveData<String> rouletteValue;
   private final MutableLiveData<Integer> pocketIndex;
   private final Random rng;
@@ -17,10 +19,10 @@ public class HomeViewModel extends AndroidViewModel {
 
   public HomeViewModel(Application application) {
     super(application);
-    rouletteValue = new MutableLiveData<>("00");
+    pocketValues = application.getResources().getStringArray(R.array.pocket_values);
+    rouletteValue = new MutableLiveData<>(pocketValues[0]);
     pocketIndex = new MutableLiveData<>();
     rng = new SecureRandom();
-    pocketValues = application.getResources().getStringArray(R.array.pocket_values);
   }
 
   public LiveData<String> getRouletteValue() {
@@ -32,7 +34,7 @@ public class HomeViewModel extends AndroidViewModel {
   }
 
   public void spinWheel() {
-    int selection = rng.nextInt(38);
+    int selection = rng.nextInt(POCKETS_ON_WHEEL);
     pocketIndex.setValue(selection);
     rouletteValue.setValue(pocketValues[selection]);
   }
