@@ -27,6 +27,10 @@ public class HomeViewModel extends AndroidViewModel {
     return rouletteValue;
   }
 
+  public LiveData<Integer> getPocketIndex() {
+    return pocketIndex;
+  }
+
   public void spinWheel() {
     int selection = rng.nextInt(38);
     pocketIndex.setValue(selection);
