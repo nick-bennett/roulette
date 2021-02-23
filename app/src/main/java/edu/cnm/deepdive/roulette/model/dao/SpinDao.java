@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 import edu.cnm.deepdive.roulette.model.entity.Spin;
 import edu.cnm.deepdive.roulette.model.pojo.SpinWithWagers;
@@ -33,6 +34,7 @@ public interface SpinDao {
   @Query("SELECT * FROM Spin ORDER BY timestamp DESC")
   LiveData<List<Spin>> selectAll();
 
+  @Transaction
   @Query("SELECT * FROM Spin WHERE spin_id = :spinId")
   LiveData<SpinWithWagers> selectById(long spinId);
 
