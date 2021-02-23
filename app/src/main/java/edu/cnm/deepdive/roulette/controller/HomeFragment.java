@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import edu.cnm.deepdive.roulette.databinding.FragmentHomeBinding;
 import edu.cnm.deepdive.roulette.viewmodel.HomeViewModel;
 import java.util.Random;
@@ -47,16 +49,15 @@ public class HomeFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-    homeViewModel.getRouletteValue().observe(getViewLifecycleOwner(), new Observer<String>() {
-      @Override
-      public void onChanged(@Nullable String s) {
-        binding.rouletteValue.setText(s);
-      }
-    });
-    homeViewModel.getPocketIndex().observe(getViewLifecycleOwner(), new Observer<Integer>() {
-      @Override
-      public void onChanged(Integer pocketIndex) {
-        startAnimation(pocketIndex);
+    getLifecycle().addObserver(homeViewModel);
+    homeViewModel.getRouletteValue().observe(getViewLifecycleOwner(),
+        (s) -> binding.rouletteValue.setText(s));
+    homeViewModel.getPocketIndex().observe(getViewLifecycleOwner(), this::startAnimation);
+    homeViewModel.getThrowable().observe(getViewLifecycleOwner(), (throwable) -> {
+      if (throwable != null) {
+        //noinspection ConstantConditions
+        Snackbar.make(getContext(), binding.getRoot(), throwable.getMessage(),
+            BaseTransientBottomBar.LENGTH_INDEFINITE).show();
       }
     });
   }
