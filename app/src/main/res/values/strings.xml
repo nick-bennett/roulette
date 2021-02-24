@@ -10,7 +10,7 @@
 
   <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="long_title_wager">Roulette: Wager</string>
-  <!-- TODO: Remove or change this placeholder text -->
+
   <string-array name="pocket_values">
     <item>00</item>
     <item>27</item>
@@ -48,7 +48,7 @@
     <item>3</item>
     <item>24</item>
     <item>36</item>
-    <item>31</item>
+    <item>13</item>
     <item>1</item>
   </string-array>
 
