@@ -14,6 +14,7 @@
   <string name="count_header">Count</string>
   <string name="percent_header">% of Total</string>
   <string name="sign_in_failure">Sign in failed</string>
+  <string name="sign_out">Sign out</string>
 
   <string-array name="pocket_values">
     <item>00</item>
