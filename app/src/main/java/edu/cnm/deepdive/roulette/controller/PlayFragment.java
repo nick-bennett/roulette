@@ -66,6 +66,12 @@ public class PlayFragment extends Fragment {
     });
   }
 
+  @Override
+  public void onStop() {
+    binding.rouletteWheel.clearAnimation();
+    super.onStop();
+  }
+
   private void spinWheel() {
     if (!spinning) {
       spinning = true;
