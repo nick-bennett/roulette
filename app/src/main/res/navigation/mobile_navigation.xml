@@ -34,4 +34,10 @@
     android:label="@string/long_title_wager"
     tools:layout="@layout/fragment_wager"/>
 
+  <fragment
+    android:id="@+id/navigation_settings"
+    android:name="edu.cnm.deepdive.roulette.controller.SettingsFragment"
+    android:label="@string/long_title_settings"
+    tools:layout="@xml/preferences"/>
+
 </navigation>

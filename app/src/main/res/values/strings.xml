@@ -15,6 +15,11 @@
   <string name="percent_header">% of Total</string>
   <string name="sign_in_failure">Sign in failed</string>
   <string name="sign_out">Sign out</string>
+  <string name="settings">Settings</string>
+  <string name="long_title_settings">Roulette: Settings</string>
+  <string name="minimum_wager_key">minimum_wager_key</string>
+  <string name="minimum_wager_title">Minimum wager</string>
+  <string name="minimum_wager_summary">Wager set or added when clicking on a specific wager spot in the wager screen.</string>
 
   <string-array name="pocket_values">
     <item>00</item>
