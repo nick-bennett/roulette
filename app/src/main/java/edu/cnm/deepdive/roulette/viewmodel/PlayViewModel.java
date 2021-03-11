@@ -52,6 +52,10 @@ public class PlayViewModel extends AndroidViewModel implements LifecycleObserver
     return pocketIndex;
   }
 
+  public LiveData<Long> getCurrentPot() {
+    return currentPot;
+  }
+
   public LiveData<Throwable> getThrowable() {
     return throwable;
   }
