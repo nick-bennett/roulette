@@ -27,6 +27,7 @@
   <string name="wager_riding_title">Let it ride!</string>
   <string name="wager_riding_summary">Controls whether winning wagers (and the payouts) remain on the table for the next spin, by default.</string>
   <string name="current_pot_format">$%,d</string>
+  <string name="new_game">New game</string>
 
   <string-array name="pocket_values">
     <item>00</item>
