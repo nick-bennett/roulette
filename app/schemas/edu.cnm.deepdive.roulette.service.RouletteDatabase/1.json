@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0d655df287c4dd81ddc79436f1e56835",
+    "identityHash": "97452edddb4578a6e0e083bc14c759e4",
     "entities": [
       {
         "tableName": "Spin",
@@ -128,12 +128,12 @@
     "views": [
       {
         "viewName": "ValueCount",
-        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT value, COUNT(*) AS `count` FROM Spin WHERE value IS NOT NULL GROUP BY value ORDER BY CASE value WHEN '00' THEN -1 ELSE CAST(value AS INTEGER) END"
+        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT value, COUNT(*) AS `count`, (100.0 * COUNT(*) / (SELECT COUNT(*) FROM spin WHERE value IS NOT NULL)) AS `percent` FROM Spin WHERE value IS NOT NULL GROUP BY value ORDER BY CASE value WHEN '00' THEN -1 ELSE CAST(value AS INTEGER) END"
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0d655df287c4dd81ddc79436f1e56835')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '97452edddb4578a6e0e083bc14c759e4')"
     ]
   }
 }
