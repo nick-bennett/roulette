@@ -11,4 +11,51 @@
   <integer name="starting_pot_default">25</integer>
   <integer name="starting_pot_increment">25</integer>
 
+  <integer-array name="space_colors">
+
+    <item>@color/greenSpace</item>
+    <item>@color/greenSpace</item>
+
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+    <item>@color/blackSpace</item>
+    <item>@color/redSpace</item>
+
+  </integer-array>
+
 </resources>

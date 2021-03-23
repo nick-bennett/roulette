@@ -7,4 +7,9 @@
   <color name="colorPrimarySurface">#EFEBE9</color>
   <color name="colorAccent">#FFD700</color>
   <color name="ic_launcher_background">#FFD700</color>
+
+  <color name="blackSpace">#FF000000</color>
+  <color name="redSpace">#FFC00000</color>
+  <color name="greenSpace">#FF4C8C4A</color>
+
 </resources>
