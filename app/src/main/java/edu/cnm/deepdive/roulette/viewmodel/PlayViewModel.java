@@ -14,6 +14,8 @@ import edu.cnm.deepdive.roulette.service.PreferenceRepository;
 import edu.cnm.deepdive.roulette.service.SpinRepository;
 import io.reactivex.disposables.CompositeDisposable;
 import java.security.SecureRandom;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class PlayViewModel extends AndroidViewModel implements LifecycleObserver {
@@ -23,6 +25,8 @@ public class PlayViewModel extends AndroidViewModel implements LifecycleObserver
   private final MutableLiveData<String> rouletteValue;
   private final MutableLiveData<Integer> pocketIndex;
   private final MutableLiveData<Long> currentPot;
+  private final MutableLiveData<Map<String, Integer>> wagers;
+  private final MutableLiveData<Integer> maxWager;
   private final MutableLiveData<Throwable> throwable;
   private final Random rng;
   private final String[] pocketValues;
@@ -36,11 +40,14 @@ public class PlayViewModel extends AndroidViewModel implements LifecycleObserver
     rouletteValue = new MutableLiveData<>(pocketValues[0]);
     pocketIndex = new MutableLiveData<>();
     currentPot = new MutableLiveData<>();
+    wagers = new MutableLiveData<>(new HashMap<>());
     throwable = new MutableLiveData<>();
     rng = new SecureRandom();
     spinRepository = new SpinRepository(application);
     preferenceRepository = new PreferenceRepository(application);
+    maxWager = new MutableLiveData<>(preferenceRepository.getMaximumWager());
     pending = new CompositeDisposable();
+    getNewMaximumWager();
     newGame();
   }
 
@@ -54,6 +61,14 @@ public class PlayViewModel extends AndroidViewModel implements LifecycleObserver
 
   public LiveData<Long> getCurrentPot() {
     return currentPot;
+  }
+
+  public LiveData<Map<String, Integer>> getWagers() {
+    return wagers;
+  }
+
+  public LiveData<Integer> getMaxWager() {
+    return maxWager;
   }
 
   public LiveData<Throwable> getThrowable() {
@@ -80,6 +95,27 @@ public class PlayViewModel extends AndroidViewModel implements LifecycleObserver
     currentPot.setValue((long) preferenceRepository.getStartingPot());
     pocketIndex.setValue(0);
     rouletteValue.setValue(pocketValues[0]);
+  }
+
+  public void incrementWager(String spaceValue) {
+    // TODO Decide what to do about min/max/increment of wager
+    Map<String, Integer> wagers = this.wagers.getValue();
+    //noinspection ConstantConditions
+    wagers.put(spaceValue, 1 + wagers.getOrDefault(spaceValue, 0));
+    this.wagers.setValue(wagers);
+  }
+
+  public void clearWager(String spaceValue) {
+    Map<String, Integer> wagers = this.wagers.getValue();
+    //noinspection ConstantConditions
+    wagers.remove(spaceValue);
+    this.wagers.setValue(wagers);
+  }
+
+  private void getNewMaximumWager() {
+    preferenceRepository
+        .maximumWager()
+        .subscribe(this.maxWager::postValue);
   }
 
   private void handleThrowable(Throwable throwable) {
