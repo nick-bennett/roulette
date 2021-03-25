@@ -9,4 +9,9 @@ package edu.cnm.deepdive.roulette.model.dto;public interface WagerSpot {
   int getColorResource();
 
   int getPayout();
+
+  int hashCode();
+  
+  boolean equals(Object obj);
+  
 }

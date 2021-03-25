@@ -1,6 +1,6 @@
 package edu.cnm.deepdive.roulette.service;
 
-import android.content.Context;
+import android.app.Application;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.cnm.deepdive.roulette.R;
@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +22,7 @@ import java.util.stream.Stream;
 
 public class ConfigurationRepository {
 
-  private static Context context;
+  private static Application context;
 
   private List<WagerSpot> wagerSpots;
   private List<PocketDto> pockets;
@@ -42,7 +41,7 @@ public class ConfigurationRepository {
     }
   }
 
-  public static void setContext(Context context) {
+  public static void setContext(Application context) {
     ConfigurationRepository.context = context;
   }
 
@@ -77,7 +76,8 @@ public class ConfigurationRepository {
         .collect(Collectors.toMap(ColorDto::getName, Function.identity()));
   }
 
-  private void buildPocketList(ConfigurationDto configurationDto, Map<String, ColorDto> colorDtoMap) {
+  private void buildPocketList(ConfigurationDto configurationDto,
+      Map<String, ColorDto> colorDtoMap) {
     pockets = configurationDto
         .getPockets()
         .stream()
