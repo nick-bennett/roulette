@@ -94,6 +94,9 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.room:room-rxjava2:$roomVersion"
 
+    // Gson library
+    implementation 'com.google.code.gson:gson:2.8.6'
+
     // Stetho (inspection)
     implementation 'com.facebook.stetho:stetho:1.5.1'
 
