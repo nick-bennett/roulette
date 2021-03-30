@@ -67,12 +67,12 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.1'
 
     // Fragment navigation
-    implementation 'androidx.fragment:fragment:1.3.1'
+    implementation 'androidx.fragment:fragment:1.3.2'
     implementation "androidx.navigation:navigation-fragment:$navigationVersion"
     implementation "androidx.navigation:navigation-ui:$navigationVersion"
 
     // Lifecycle (LiveData & ViewModel)
-    def lifecycleVersion = '2.3.0'
+    def lifecycleVersion = '2.3.1'
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycleVersion"
@@ -114,6 +114,7 @@ task generateApiDoc() {
 
 android.applicationVariants.all { variant ->
     def task = project.tasks.create("generate${variant.name.capitalize()}Javadoc", Javadoc) {
+
         title "Roulette (${project.android.defaultConfig.versionName})"
         group "ApiDoc"
         description "Generates Javadoc for $variant.name."
@@ -121,8 +122,11 @@ android.applicationVariants.all { variant ->
         source = variant.sourceSets.collect { it.java.sourceFiles }.inject { m, i -> m + i }
 
         doFirst {
-            classpath = project.files(variant.javaCompileProvider.get().classpath.files,
-                    project.android.getBootClasspath())
+            classpath = project.files(
+                    project.file(projectDir).toPath().resolve("build/intermediates/javac/${variant.name}/classes"), // Added
+                    variant.javaCompileProvider.get().classpath.files,
+                    project.android.getBootClasspath(),
+            )
         }
 
         if (JavaVersion.current().isJava8Compatible()) {
