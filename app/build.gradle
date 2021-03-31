@@ -113,6 +113,7 @@ task generateApiDoc() {
 }
 
 android.applicationVariants.all { variant ->
+
     def task = project.tasks.create("generate${variant.name.capitalize()}Javadoc", Javadoc) {
 
         title "Roulette (${project.android.defaultConfig.versionName})"
@@ -123,14 +124,10 @@ android.applicationVariants.all { variant ->
 
         doFirst {
             classpath = project.files(
-                    project.file(projectDir).toPath().resolve("build/intermediates/javac/${variant.name}/classes"), // Added
+                    project.file(projectDir).toPath().resolve("build/intermediates/javac/${variant.name}/classes"),
                     variant.javaCompileProvider.get().classpath.files,
                     project.android.getBootClasspath(),
             )
-        }
-
-        if (JavaVersion.current().isJava8Compatible()) {
-            options.addStringOption('Xdoclint:none', '-quiet')
         }
 
         exclude '**/R'
@@ -147,6 +144,10 @@ android.applicationVariants.all { variant ->
             author = false
             links 'https://docs.oracle.com/javase/8/docs/api/'
             linksOffline 'https://developer.android.com/reference', "$projectDir/.."
+        }
+
+        if (JavaVersion.current().isJava8Compatible()) {
+            options.addStringOption('Xdoclint:none', '-quiet')
         }
 
         failOnError true
